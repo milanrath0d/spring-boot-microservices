@@ -1,6 +1,7 @@
 package org.milan.movieinfoservice.resources;
 
 import org.milan.movieinfoservice.models.MovieInfo;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/movies")
 public class MovieInfoResource {
 
-    @RequestMapping("/{movieId}")
+    @GetMapping("/{movieId}")
     public MovieInfo getMovieInfo(@PathVariable String movieId) {
         return new MovieInfo(movieId, "Hulk", "test");
     }
