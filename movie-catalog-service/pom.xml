@@ -2,22 +2,29 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.2.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
     <groupId>org.milan</groupId>
     <artifactId>movie-catalog-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <name>movie-catalog-service</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Movie catalog service</description>
 
-    <properties>
-        <java.version>1.8</java.version>
-        <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
-    </properties>
+    <parent>
+        <groupId>org.milan</groupId>
+        <artifactId>spring-boot-microservices</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
 
     <dependencies>
         <dependency>
@@ -51,34 +58,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
-    <repositories>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
-        </repository>
-    </repositories>
 
 </project>

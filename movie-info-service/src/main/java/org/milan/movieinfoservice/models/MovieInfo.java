@@ -43,5 +43,3 @@ public class MovieInfo {
         this.desc = desc;
     }
 }
-
-
