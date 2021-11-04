@@ -16,12 +16,15 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class MovieInfoService {
 
+    private static final String MOVIE_INFO_REST_URL = "http://movie-info-service/movies/";
+
     @Autowired
     private RestTemplate restTemplate;
 
     @HystrixCommand(fallbackMethod = "getFallbackCatalogItem")
     public CatalogItem getCatalogItem(Rating rating) {
-        MovieInfo movieInfo = restTemplate.getForObject("http://movie-info-service/movies/" + rating.getMovieId(), MovieInfo.class);
+        MovieInfo movieInfo = restTemplate.getForObject(MOVIE_INFO_REST_URL +
+                rating.getMovieId(), MovieInfo.class);
         return new CatalogItem(movieInfo.getName(), movieInfo.getDesc(), rating.getRating());
     }
 

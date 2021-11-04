@@ -32,6 +32,7 @@ public class MovieCatalogResource {
 
         UserRating ratings = userRatingService.getUserRating(userId);
 
-        return ratings.getRatings().stream().map(rating -> movieInfoService.getCatalogItem(rating)).collect(Collectors.toList());
+        return ratings.getRatings().stream().map(rating ->
+                movieInfoService.getCatalogItem(rating)).collect(Collectors.toList());
     }
 }

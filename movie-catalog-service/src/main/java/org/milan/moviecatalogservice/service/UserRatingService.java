@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Class responsible for fetching user ratings
@@ -17,18 +17,20 @@ import java.util.Arrays;
 @Service
 public class UserRatingService {
 
+    private static final String RATING_SERVICE_REST_URL = "http://ratings-data-service/ratings/users/";
+
     @Autowired
     private RestTemplate restTemplate;
 
     @HystrixCommand(fallbackMethod = "getFallbackUserRating")
     public UserRating getUserRating(String userId) {
-        return restTemplate.getForObject("http://ratings-data-service/ratings/users/" + userId, UserRating.class);
+        return restTemplate.getForObject(RATING_SERVICE_REST_URL + userId, UserRating.class);
     }
 
     private UserRating getFallbackUserRating(String userId) {
         UserRating userRating = new UserRating();
         userRating.setUserId(userId);
-        userRating.setRatings(Arrays.asList(new Rating("0", 0)));
+        userRating.setRatings(Collections.singletonList(new Rating("0", 0)));
         return userRating;
     }
 }
